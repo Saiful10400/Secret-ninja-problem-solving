@@ -1,4 +1,5 @@
-// problem:1.-----------------------------------------------------------------------------------------------------------------------------------------------
+// problem:1. (Two Sum)
+// -----------------------------------------------------------------------------------------------------------------------------------------------
 
 // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -37,10 +38,10 @@ const findIndexes = (arr = [], target) => {
 };
 
 // test part.
-// let array =  [3,3];
-// console.log(findIndexes(array, 6));
+// console.log(findIndexes([3,3], 6));
 
-// problem 2. -----------------------------------------------------------------------------------------------------------------------------------------------
+// problem 2. (3Sum)
+//  -----------------------------------------------------------------------------------------------------------------------------------------------
 
 // Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
 function threeSum(nums) {
@@ -74,3 +75,49 @@ function threeSum(nums) {
 
 // test part.
 // console.log(threeSum([0,0,0]))
+
+// problem 3. (Remove Duplicates From Sorted Array) -----------------------------------------------------------------------------------------------------------------------------------------------
+
+// Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
+
+function removeDuplicates(nums) {
+  if (nums.length === 0) return 0;
+
+  let k = 1;
+
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] !== nums[i - 1]) {
+      nums[k] = nums[i];
+      k++;
+    }
+  }
+  return k;
+}
+
+// test part.
+// console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+
+// problem 4. (Search Insert Position)---------------------------------------------------------------------------------------------------------------------------------------
+// Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+function searchInsert(nums, target) {
+  let left = 0,
+    right = nums.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] === target) {
+      return mid;
+    } else if (nums[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return left;
+}
+
+// test part.
+// console.log(searchInsert([1,3,5,6],7))
